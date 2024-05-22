@@ -9,7 +9,7 @@ const PORT = Number(env('PORT', '3002'));
 export const setupServer = () => {
   const app = express();
 
-  app.use(express());
+  app.use(express.json());
   app.use(cors());
 
   app.use(
@@ -36,7 +36,7 @@ export const setupServer = () => {
   });
 
   app.get('/contacts/:contactId', async (req, res) => {
-    const { contactId } = req.params();
+    const { contactId } = req.params;
     const student = await getContactById(contactId);
 
     res.status(200).json({
