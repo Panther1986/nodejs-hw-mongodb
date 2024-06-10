@@ -1,5 +1,5 @@
 const parseNumber = (number, defaulValue) => {
-  const isString = typeof number === 'number';
+  const isString = typeof number === 'string';
   if (!isString) return defaulValue;
 
   const parsedNumber = parseInt(number);
