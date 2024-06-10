@@ -1,7 +1,9 @@
-import { Promise } from 'mongoose';
+import mongoose from 'mongoose';
 import { SORT_ORDER } from '../constans/index.js';
 import { contactsCollection } from '../db/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
+
+const { Promise } = mongoose;
 
 export const getAllContacts = async ({
   page = 1,

@@ -10,22 +10,6 @@ export const createContactsShema = Joi.object({
     .max(20)
     .valid('work', 'home', 'personal')
     .default('personal'),
-  createdAt: Joi.date().default(Date.now),
-  updatedAt: Joi.date().default(Date.now),
-}).options({
-  timestamps: true,
-  toJSON: {
-    transform: function (doc, ret) {
-      delete ret.__v;
-      return ret;
-    },
-  },
-  toObject: {
-    transform: function (doc, ret) {
-      delete ret.__v;
-      return ret;
-    },
-  },
 });
 
 export const updateContactsShema = Joi.object({
@@ -38,20 +22,4 @@ export const updateContactsShema = Joi.object({
     .max(20)
     .valid('work', 'home', 'personal')
     .default('personal'),
-  createdAt: Joi.date().default(Date.now),
-  updatedAt: Joi.date().default(Date.now),
-}).options({
-  timestamps: true,
-  toJSON: {
-    transform: function (doc, ret) {
-      delete ret.__v;
-      return ret;
-    },
-  },
-  toObject: {
-    transform: function (doc, ret) {
-      delete ret.__v;
-      return ret;
-    },
-  },
 });
