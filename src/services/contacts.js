@@ -1,9 +1,6 @@
-import mongoose from 'mongoose';
 import { SORT_ORDER } from '../constans/index.js';
 import { contactsCollection } from '../db/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
-
-const { Promise } = mongoose;
 
 export const getAllContacts = async ({
   page = 1,
@@ -22,15 +19,16 @@ export const getAllContacts = async ({
   if (filter.contactType) {
     contactsQuery.where('contactType').equals(filter.contactType);
   }
-  const [contactsCount, contacts] = await Promise.all([
-    contactsQuery.countDocuments(),
-    contactsQuery
-      .skip(skip)
-      .limit(limit)
-      .sort({ [sortBy]: sortOrder })
-      .exec(),
-  ]);
+  const contactsCount = await contactsCollection
+    .find()
+    .merge(contactsQuery)
+    .countDocuments();
 
+  const contacts = await contactsQuery
+    .skip(skip)
+    .limit(limit)
+    .sort({ [sortBy]: sortOrder })
+    .exec();
   const paginationData = calculatePaginationData(contactsCount, perPage, page);
   return {
     data: contacts,
