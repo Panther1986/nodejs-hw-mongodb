@@ -1,13 +1,9 @@
 const parseNumber = (number, defaulValue) => {
-  const isString = typeof number === 'string';
-  if (!isString) return defaulValue;
-
-  const parsedNumber = parseInt(number);
-  if (Number.isNaN(parsedNumber)) {
+  if (isNaN(parseInt(number))) {
     return defaulValue;
   }
 
-  return parsedNumber;
+  return parseInt(number);
 };
 
 export const parsePaginationParams = (query) => {
