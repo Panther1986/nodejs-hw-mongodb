@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import { ROLE } from '../constans/index.js';
 
 const usersShema = new Schema(
   {
@@ -15,11 +16,19 @@ const usersShema = new Schema(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      default: ROLE.USER,
+    },
   },
   {
     timestamps: true,
     versionKey: false,
   },
 );
-
+usersShema.method.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 export const UsersCollection = model('users', usersShema);
