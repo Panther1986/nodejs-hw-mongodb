@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import CreateHttpErrors from 'http-errors';
+import { randomBytes } from 'crypto';
 import { UsersCollection } from '../db/user.js';
 import createHttpError from 'http-errors';
 import { FIFTEEN_MINUTES, THIRTY_DAYS } from '../constans/index.js';
