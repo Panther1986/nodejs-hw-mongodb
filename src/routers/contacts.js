@@ -13,38 +13,26 @@ import {
   updateContactsShema,
 } from '../validation/contacts.js';
 import { authenticate } from '../middlewares/authenticate.js';
-import { ROLE } from '../constans/index.js';
-import { checkRoles } from '../middlewares/checkRoles.js';
 
 const router = Router();
 router.use(authenticate);
 
-router.get('/', checkRoles(ROLE.USER), ctrlWrapper(getContactsController));
+router.get('/', ctrlWrapper(getContactsController));
 
-router.get(
-  '/:contactId',
-  checkRoles(ROLE.USER),
-  ctrlWrapper(getContactsByIdController),
-);
+router.get('/:contactId', ctrlWrapper(getContactsByIdController));
 
 router.post(
   '',
-  checkRoles(ROLE.USER),
   validateBody(createContactsShema),
   ctrlWrapper(createContactController),
 );
 
 router.patch(
   '/:contactId',
-  checkRoles(ROLE.USER),
   validateBody(updateContactsShema),
   ctrlWrapper(patchContactController),
 );
 
-router.delete(
-  '/:contactId',
-  checkRoles(ROLE.USER),
-  ctrlWrapper(deleteContactController),
-);
+router.delete('/:contactId', ctrlWrapper(deleteContactController));
 
 export default router;

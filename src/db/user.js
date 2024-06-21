@@ -1,5 +1,4 @@
 import { model, Schema } from 'mongoose';
-import { ROLE } from '../constans/index.js';
 
 const usersShema = new Schema(
   {
@@ -15,10 +14,6 @@ const usersShema = new Schema(
     password: {
       type: String,
       required: true,
-    },
-    role: {
-      type: String,
-      default: ROLE.USER,
     },
   },
   {
