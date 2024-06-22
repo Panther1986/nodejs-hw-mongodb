@@ -2,10 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const sessionsShema = new Schema(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
+    userId: { type: Schema.Types.ObjectId, ref: 'users' },
     accessToken: {
       type: String,
       required: true,
