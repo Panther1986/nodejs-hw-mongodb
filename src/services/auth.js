@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken';
 import { UsersCollection } from '../db/user.js';
 import createHttpError from 'http-errors';
 import handlebars from 'handlebars';
-import path from 'node:path';
-import fs from 'node:fs/promises';
+import path from 'path';
+import fs from 'fs/promises';
 import {
   FIFTEEN_MINUTES,
   THIRTY_DAYS,
@@ -113,16 +113,16 @@ export const requestResetToken = async (email) => {
     },
   );
 
-  const resertPasswordTemplatePath = path.join(
+  const resetPasswordTemplatePath = path.join(
     TEMPLATES_DIR,
     'reset-password-email.html',
   );
 
-  const templateSourse = (
-    await fs.readFile(resertPasswordTemplatePath)
+  const templateSource = (
+    await fs.readFile(resetPasswordTemplatePath)
   ).toString();
 
-  const template = handlebars.compile(templateSourse);
+  const template = handlebars.compile(templateSource);
   const html = template({
     name: user.name,
     link: `${env('APP_DOMAIN')}/reset-password?token=${resetToken}`,
@@ -131,7 +131,7 @@ export const requestResetToken = async (email) => {
   await sendEmail({
     from: env(SMTP.SMTP_FROM),
     to: email,
-    subject: 'Reser your password',
+    subject: 'Reset your password',
     html,
   });
 };
