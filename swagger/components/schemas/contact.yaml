@@ -1,54 +1,54 @@
 type: object
 required:
-  - _id
   - name
   - phoneNumber
   - email
   - isFavourite
   - contactType
-  - createdAt
   - updatedAt
+  - createdAt
   - userId
-  - photo
 properties:
-  _id:
-    description: "Contact's id"
-    type: string
-    example: 65e4decdd286b30065d54af9
   name:
-    description: "Contact's name"
     type: string
+    description: "Student's name"
     example: 'John Doe'
   phoneNumber:
-    description: "Contact's number"
-    type: number
-    example: 15556638
+    type: string
+    description: 'Phone number'
+    example: '+380000000007'
   email:
-    description: "Contat's email"
     type: string
-    example: examle@mail.com
+    description: 'Email address'
+    format: email
+    example: 'john.doe@example.com'
   isFavourite:
-    description: "Favourite contacts for user"
     type: boolean
-    example: false
-  contactType:
-    description: "Type of contact"
-    type: string
-    enum: ['work', 'home', 'personal']
-    example: 'personal'
+    description: 'Contact favourite'
+    example: true
   createdAt:
-    description: "Date of create contact"
-    type: date
-    example: 2024-06-30T08:41:31.638Z
-   updatedAt:
-    description: "Date of update contact"
-    type: date
-    example: 2024-06-30T10:41:31.638Z
+    type: string
+    format: date-time
+    description: 'When was created'
+    example: '2024-06-06T17:48:14.102Z'
+  updatedAt:
+    type: string
+    format: date-time
+    description: 'When was updated'
+    example: '2024-06-06T17:48:14.102Z'
+  contactType:
+    type: string
+    description: "Contact's type"
+    enum:
+      - work
+      - home
+      - personal
+    example: 'work'
   userId:
-    description: "id of user which uses app"
     type: string
-    example: 66811a3bbc351d9ab2c7bfc3
+    description: 'ID of the user who created the contact'
+    example: '60d21b4667d0d8992e610c85'
   photo:
-    description: "Link to contact's photo"
     type: string
-    example: <https://res.cloudinary.com/uqwgdu/image/upload/image.png>
+    format: binary
+    description: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'

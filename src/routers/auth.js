@@ -13,7 +13,6 @@ import {
   requestResetEmailController,
   resetPasswordController,
   getGoogleOAuthUrlController,
-  loginUserController,
   loginWithGoogleController,
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
