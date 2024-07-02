@@ -31,3 +31,8 @@ export const CLOUDINARY = {
 };
 
 export const SWAGGER_PATH = path.join(process.cwd(), 'docs', 'swagger.json');
+
+export const ENV_VARS = {
+  GOOGLE_AUTH_CLIENT_ID: 'GOOGLE_AUTH_CLIENT_ID',
+  GOOGLE_AUTH_CLIENT_SECRET: 'GOOGLE_AUTH_CLIENT_SECRET',
+};
