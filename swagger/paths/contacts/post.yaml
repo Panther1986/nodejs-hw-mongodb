@@ -11,54 +11,54 @@ requestBody:
       schema:
         type: object
         required:
-            - name
+          - name
           - phoneNumber
           - email
           - isFavourite
           - contactType
-          - createdAt
           - updatedAt
+          - createdAt
           - userId
-          - photo
-
         properties:
-           name:
+          name:
             description: "Contact's name"
             type: string
             example: 'John Doe'
           phoneNumber:
-            description: "Contact's number"
+            description: 'Phone number'
             type: number
-            example: 15556638
+            example: +380000000007
           email:
-            description: "Contat's email"
+            description: 'Email address'
             type: string
-            example: examle@mail.com
+            format: email
+            example: 'john.doe@example.com'
           isFavourite:
-            description: "Favourite contacts for user"
+            description: 'Contact favourite'
             type: boolean
-            example: false
-          contactType:
-            description: "Type of contact"
-            type: string
-            enum: ['work', 'home', 'personal']
-            example: 'personal'
+            example: true
           createdAt:
-            description: "Date of create contact"
-            type: date
-            example: 2024-06-30T08:41:31.638Z
+            description: 'When was created'
+            type: string
+            format: date-time
+            example: '2024-06-06T17:48:14.102Z'
           updatedAt:
-            description: "Date of update contact"
-            type: date
-            example: 2024-06-30T10:41:31.638Z
-          userId:
-            description: "id of user which uses app"
+            description: 'When was updated'
             type: string
-            example: 66811a3bbc351d9ab2c7bfc3
+            format: date-time
+            example: '2024-06-06T17:48:14.102Z'
+          contactType:
+            description: "Contact's type"
+            type: string
+            enum:
+              - work
+              - home
+              - personal
+            example: 'work'
           photo:
-            description: "Link to contact's photo"
+            description: 'Link to photo'
             type: string
-            example: <https://res.cloudinary.com/uqwgdu/image/upload/image.png>
+            format: binary
 responses:
   '201':
     description: Creates a contact
@@ -73,10 +73,10 @@ responses:
           properties:
             status:
               type: integer
-              example: 200
+              example: 201
             message:
               type: string
-              example: Successfully created a contact!
+              example: Successfully created contact!
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
