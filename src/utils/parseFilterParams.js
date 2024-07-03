@@ -1,16 +1,16 @@
-const parseFavoriteContacts = (favourite) => {
-  if (typeof favourite !== 'string') return;
+const parseFavoriteContacts = (isFavourite) => {
+  if (typeof isFavourite !== 'string') return;
 
-  const lowerFavourite = favourite.toLowerCase();
+  const lowerFavourite = isFavourite.toLowerCase();
   if (['true', 'false'].includes(lowerFavourite)) {
     return lowerFavourite === 'true';
   }
 };
 
-const parseContactType = (type) => {
-  if (typeof type !== 'string') return;
+const parseContactType = (contactType) => {
+  if (typeof contactType !== 'string') return;
 
-  const lowerType = type.toLowerCase();
+  const lowerType = contactType.toLowerCase();
   if (['work', 'home', 'personal'].includes(lowerType)) {
     return lowerType;
   }
