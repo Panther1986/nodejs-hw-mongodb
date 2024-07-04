@@ -177,59 +177,47 @@
         ],
         "summary": "Create contact",
         "operationId": "createContact",
-        "description": "Create a contact with payload",
+        "description": "Create a new contact with the provided payload.",
         "security": [
           {
             "bearerAuth": []
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
                 "type": "object",
                 "required": [
                   "name",
-                  "phoneNumber",
-                  "userId"
+                  "phoneNumber"
                 ],
                 "properties": {
                   "name": {
-                    "description": "Contact's name",
                     "type": "string",
+                    "description": "Contact's name",
                     "example": "John Doe"
                   },
                   "phoneNumber": {
+                    "type": "string",
                     "description": "Phone number",
-                    "type": "number",
-                    "example": 380000000007
+                    "example": "+380000000007"
                   },
                   "email": {
-                    "description": "Email address",
                     "type": "string",
                     "format": "email",
+                    "description": "Email address",
                     "example": "john.doe@example.com"
                   },
                   "isFavourite": {
-                    "description": "Contact favourite",
                     "type": "boolean",
+                    "description": "Indicates if the contact is a favourite",
                     "example": true
                   },
-                  "createdAt": {
-                    "description": "When was created",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-06-06T17:48:14.102Z"
-                  },
-                  "updatedAt": {
-                    "description": "When was updated",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-06-06T17:48:14.102Z"
-                  },
                   "contactType": {
-                    "description": "Contact's type",
                     "type": "string",
+                    "description": "Contact's type",
                     "enum": [
                       "work",
                       "home",
@@ -238,9 +226,9 @@
                     "example": "work"
                   },
                   "photo": {
-                    "description": "Link to photo",
                     "type": "string",
-                    "format": "binary"
+                    "format": "binary",
+                    "description": "File upload for the contact photo"
                   }
                 }
               }
@@ -249,7 +237,7 @@
         },
         "responses": {
           "201": {
-            "description": "Creates a contact",
+            "description": "Contact created successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -592,7 +580,7 @@
           "isFavourite": {
             "type": "boolean",
             "description": "Contact favourite",
-            "example": false
+            "example": true
           },
           "createdAt": {
             "type": "string",
