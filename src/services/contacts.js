@@ -21,12 +21,9 @@ export const getAllContacts = async (
     .sort({ [sortBy]: sortOrder });
 
   if (filter.isFavourite !== undefined) {
-    const parsedIsFavourite = parseFilterParams(filter.isFavourite);
-    if (parsedIsFavourite !== undefined) {
-      contactsQuery = contactsQuery
-        .where('isFavourite')
-        .equals(parsedIsFavourite);
-    }
+    contactsQuery = contactsQuery
+      .where('isFavourite')
+      .equals(filter.isFavourite);
   }
 
   const contactsCount = await contactsCollection.countDocuments({ userId });
